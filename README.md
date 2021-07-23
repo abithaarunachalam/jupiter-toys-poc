@@ -26,3 +26,13 @@ URL under test: https://jupiter.cloud.planittesting.com/#/contact
 1. Java 1.8
 2. Selenium Webdriver
 3. Maven
+
+### Two ways of using the chrome driver
+    	
+In Runner.java file, The below code has been commented. If we have the latest version of the 
+chrome driver downloaded, please copy paste the driver in /usr/local/bin and uncomment the below code
+
+    	 // String chromePath = "//usr//local//bin//";
+    	 // System.setProperty("webdriver.chrome.driver", chromePath+"chromedriver");
+
+As of now, the chrome driver is downloaded into the src/main/resources/config/drivers under project folder
