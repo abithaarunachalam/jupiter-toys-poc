@@ -3,12 +3,14 @@
  */
 package launchpage;
 
-import pages.Jupitertoyspage;
+
+import pages.Scenarios;
 import commonlib.Runner;
 import commonlib.Util;
 
 /**
- * @author abi
+ * @author abitha
+ * @implNote This class is used to launch Chrome and execute different scenarios
  *
  */
 public class Launchpage {
@@ -18,43 +20,43 @@ public class Launchpage {
 	 */
 	public static void main(String[] args) {
 		
-		Jupitertoyspage jupitertoyspage = new Jupitertoyspage();
+		Scenarios scenario = new Scenarios();
 		Runner runner = new Runner();
 		Util util = new Util();
 		
 		/**
-		 * Scenario 1
+		 * Scenario 1 - Comments Page Validation
 		 */
-		/*
+		
 		runner.setup();
         util.clickBrowserMaximizeButton();
-		jupitertoyspage.launchjupiter();
-		jupitertoyspage.scenario1();
+        scenario.scenario1_Comments_Validation();
         runner.cleanup();
         
-        */
 		/**
-		 * Scenario 2
+		 * Scenario 2 - Adding Multiple Comments
 		 */
-		/*
-		runner.setup();
-        util.clickBrowserMaximizeButton();
-		jupitertoyspage.launchjupiter();
-		jupitertoyspage.scenario2();
+        runner.setup();
+        scenario.scenario2_Multiple_Comments();
         runner.cleanup();
-        
-        */
 		
         /**
-		 * Scenario 3
+		 * Scenario 3 - Add Items to Cart
 		 */
 		
 		runner.setup();
         util.clickBrowserMaximizeButton();
-		jupitertoyspage.launchjupiter();
-		jupitertoyspage.scenario3();
-       // runner.cleanup();
+		scenario.scenario3_Add_Item_To_Cart();
+        runner.cleanup();
         
+        /**
+		 * Scenario 4 - Check Price and Subtotal
+		 */
+		
+		runner.setup();
+        util.clickBrowserMaximizeButton();
+		scenario.scenario4_Check_Price();
+        runner.cleanup();
 	}
 
 }

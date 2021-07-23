@@ -4,22 +4,40 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * @author abitha
+ * @implNote This class is used to create different functions for configuration
+ *
+ */
+
 public class Configuration {
     private Properties config;
-    private Util util;
     private String basepath = "//src//main//resources//config//";
     private String profilePath = basepath + "profiles//";
     private String envPath = basepath + "envs//";
     private String sysPath = basepath + "system//";
+    private String driver = basepath + "drivers//";
 
     public Configuration() {
-        util = new Util();
         initConfig();
     }
 
     public void loadSystemConfig() {
         try {
             FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + sysPath + "framework.properties");
+
+            Properties config = new Properties();
+            config.load(fs);
+
+            this.config = config;
+        } catch (IOException e) {
+            ExecutionLogger.root_logger.error("Cannot find " + e);
+        }
+    }
+    
+    public void loaddriverConfig() {
+        try {
+            FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + driver + "chromedriver");
 
             Properties config = new Properties();
             config.load(fs);
@@ -43,9 +61,6 @@ public class Configuration {
         }
     }
 
-    private void loadEnvConfig(String pcname, String userenv) {
-        loadConfig(pcname, userenv);
-    }
 
     public void loadConfig(String pcname, String configname) {
         try {
@@ -72,8 +87,6 @@ public class Configuration {
             config.load(fs1);   // Framework
            // config.load(fs2);   // ALM
             config.load(fs3);   // PC
-            String userSpecificEnv = config.getProperty("Env");
-
             FileInputStream fs4 = new FileInputStream(System.getProperty("user.dir") + envPath + "Environment.properties");
             config.load(fs4);   // Environment
 

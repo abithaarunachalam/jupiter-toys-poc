@@ -2,7 +2,6 @@ package commonlib;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +29,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * @author abitha
+ * @implNote This class is a container for different functions of web driver
+ *
+ */
 
 public class WebDriverHelper extends Runner {
 
@@ -41,8 +45,6 @@ public class WebDriverHelper extends Runner {
 	private static final long DEFAULT_TIME_OUT = 20;
 	private static final long IMPLICIT_WAIT = 10;
 	private static final long FLUENT_WAIT = 120;
-	private File src;
-	private Util util;
 	public static String screenShotPath;
 	public static Configuration conf = new Configuration();
 
@@ -287,7 +289,7 @@ public class WebDriverHelper extends Runner {
 		} else {
 			ExecutionLogger.file_logger.info("Elementlist " + elementlist + " is empty.");
 		}
-		ExecutionLogger.console_logger.info(" ");
+		ExecutionLogger.file_logger.info(" ");
 		return strText;
 	}
 
@@ -915,10 +917,7 @@ public class WebDriverHelper extends Runner {
 		}
 	}
 
-	private void doubleClickByAction(WebElement element) {
-		Actions action = new Actions(driver);
-		action.doubleClick(element).click().perform();
-	}
+
 
 	public void doubleClickByAction(By by) {
 		WebElement element = null;
@@ -1102,7 +1101,6 @@ public class WebDriverHelper extends Runner {
 	}
 
 	public void javascriptClick(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIME_OUT);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 //		executor.executeScript("arguments[0].click();", element);
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
@@ -1209,7 +1207,6 @@ public class WebDriverHelper extends Runner {
 
 	public static boolean verifyNumeric(String strNum) {
 		try {
-			double d = Double.parseDouble(strNum);
 		} catch (NumberFormatException | NullPointerException nfe) {
 			return false;
 		}
